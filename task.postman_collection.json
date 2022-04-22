@@ -1,0 +1,1862 @@
+{
+	"info": {
+		"_postman_id": "22fd7c93-8e36-486d-9013-436d2551387a",
+		"name": "task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{manager_email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/actuarial/users/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"{{user_email}}\",\r\n    \"password\": {{password}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/user/login",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 17 Mar 2021 07:13:55 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "335"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"token\": \"2eb3824803c72c6484982721b66652170f093fae\",\n    \"message\": \"You are successfully logged in.\",\n    \"data\": {\n        \"user\": {\n            \"id\": 4,\n            \"last_login\": null,\n            \"is_superuser\": false,\n            \"first_name\": \"\",\n            \"last_name\": \"\",\n            \"is_staff\": false,\n            \"date_joined\": \"2021-03-16T11:14:25.790131Z\",\n            \"full_name\": null,\n            \"phone_no\": null,\n            \"is_active\": true,\n            \"role\": \"user\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{manager_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"User 99\",\r\n    \"email\": \"user99@mailinator.cOM\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"user\",\r\n    \"phone_no\": \"03002582\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/actuarial/users/create/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"create",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{manager_token}}",
+										"type": "text"
+									},
+									{
+										"key": "medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"full_name\": \"Admin Admin\",\r\n    \"email\": \"admin10@mailinator.cOM\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"manager\",\r\n    \"phone_no\": \"03002582\"\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/user/create/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"user",
+										"create",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 17 Mar 2021 07:12:29 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User 17 successfully create.\",\n    \"data\": {\n        \"user\": {\n            \"id\": 17\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 01e27c3e3c387724d7999ec0503daeeb7d9da5ba",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/actuarial/users/logout/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"logout",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 5a6a6f47c0d8bc43cc0cafe20c3f0afd6e01c4e8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/user/logout/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"user",
+										"logout",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 17 Mar 2021 08:24:57 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User admin10@mailinator.com is logged out.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token c7ddcfe20b48a5f72815da43285156b00badc1cc",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{domain}}/actuarial/users?list=inactive",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users"
+							],
+							"query": [
+								{
+									"key": "list",
+									"value": "inactive"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{manager_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "Portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/users",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 17 Mar 2021 11:21:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1190"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User list successfully returned.\",\n    \"data\": {\n        \"user\": [\n            {\n                \"id\": 1,\n                \"full_name\": null,\n                \"email\": \"admin@mailinator.com\",\n                \"phone_no\": null,\n                \"is_active\": true,\n                \"role\": \"user\",\n                \"date_joined\": \"2021-03-16T06:13:13.922835Z\",\n                \"last_login\": \"2021-03-17T05:36:34.707418Z\"\n            },\n            {\n                \"id\": 2,\n                \"full_name\": \"Muhammad Ozair\",\n                \"email\": \"ozair@diyainteractive.com\",\n                \"phone_no\": \"03002582852\",\n                \"is_active\": true,\n                \"role\": \"manager\",\n                \"date_joined\": \"2021-03-16T06:13:59Z\",\n                \"last_login\": null\n            },\n            {\n                \"id\": 4,\n                \"full_name\": null,\n                \"email\": \"admin1@mailinator.com\",\n                \"phone_no\": null,\n                \"is_active\": true,\n                \"role\": \"user\",\n                \"date_joined\": \"2021-03-16T11:14:25.790131Z\",\n                \"last_login\": null\n            },\n            {\n                \"id\": 17,\n                \"full_name\": \"admin admin\",\n                \"email\": \"admin10@mailinator.com\",\n                \"phone_no\": \"03002582\",\n                \"is_active\": true,\n                \"role\": \"manager\",\n                \"date_joined\": \"2021-03-17T07:12:29.039255Z\",\n                \"last_login\": null\n            },\n            {\n                \"id\": 18,\n                \"full_name\": \"admin admin\",\n                \"email\": \"admin11@mailinator.com\",\n                \"phone_no\": \"03002582\",\n                \"is_active\": true,\n                \"role\": \"manager\",\n                \"date_joined\": \"2021-03-17T07:58:14.544626Z\",\n                \"last_login\": null\n            },\n            {\n                \"id\": 19,\n                \"full_name\": \"admin admin\",\n                \"email\": \"admin12@mailinator.com\",\n                \"phone_no\": \"03002582\",\n                \"is_active\": true,\n                \"role\": \"manager\",\n                \"date_joined\": \"2021-03-17T10:27:29.647559Z\",\n                \"last_login\": null\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "User me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{manager_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/actuarial/users/me",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User me",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{manager_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "Portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/users/me",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"users",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 17 Mar 2021 11:36:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"full_name\": \"Muhammad Ozair\",\n    \"email\": \"ozair@diyainteractive.com\",\n    \"phone_no\": \"03002582852\",\n    \"is_active\": true,\n    \"role\": \"manager\",\n    \"date_joined\": \"2021-03-16T06:13:59Z\",\n    \"last_login\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "User delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{manager_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/actuarial/users/delete/?q=4",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"delete",
+								""
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{manager_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "Portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/users/delete/?q=19",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"users",
+										"delete",
+										""
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "19"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 17 Mar 2021 12:04:21 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "DELETE, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User list successfully deleted.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Specific user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{manager_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/actuarial/users/1/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Specific user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{manager_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "Portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/users/1/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"users",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 17 Mar 2021 12:35:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User details success.\",\n    \"data\": {\n        \"id\": 1,\n        \"full_name\": null,\n        \"email\": \"admin@mailinator.com\",\n        \"phone_no\": null,\n        \"is_active\": true,\n        \"role\": \"user\",\n        \"date_joined\": \"2021-03-16T06:13:13.922835Z\",\n        \"last_login\": \"2021-03-17T05:36:34.707418Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 66449aa29151f859f27b9e2664b48208c07a911b",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"role\": \"manager\",\r\n    \"full_name\": \"Kashif Aziz\",\r\n    \"password\": \"123456\",\r\n    \"phone_no\": \"0300\",\r\n    \"is_active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/actuarial/users/update-user/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{manager_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "Portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"19\",\r\n    \"role\": \"user\",\r\n    \"full_name\": \"TEST NAMING\",\r\n    \"phone_no\": \"0300\",\r\n    \"is_active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/users/update-user/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"users",
+										"update-user",
+										""
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 17 Mar 2021 13:58:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Token"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"User inactive or deleted.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Change user password",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{manager_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"old_password\": \"123456\",\r\n    \"password1\": \"1234567\",\r\n    \"password2\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/actuarial/users/changepassword/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"changepassword",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User password change call",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{manager_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "Portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password1\": \"123456\",\r\n    \"password2\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/users/changepassword/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"users",
+										"changepassword",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 29 Mar 2021 11:05:34 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Password has been changed.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Change User Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{superuser_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone_no\": 123456789,\r\n    \"full_name\": \"user full name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/actuarial/users/update-profile/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"update-profile",
+								""
+							]
+						},
+						"description": "User can edit name and phone number in own profile"
+					},
+					"response": [
+						{
+							"name": "Update user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{manager_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "Portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"19\",\r\n    \"role\": \"user\",\r\n    \"full_name\": \"TEST NAMING\",\r\n    \"phone_no\": \"0300\",\r\n    \"is_active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/users/update-user/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"users",
+										"update-user",
+										""
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 17 Mar 2021 13:58:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Token"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"User inactive or deleted.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Enable or Disable a User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token ce072c9971bffabc4e5a992623a3d15703afc85a",
+								"type": "text"
+							},
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/actuarial/users/4/state/?q=enable",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"actuarial",
+								"users",
+								"4",
+								"state",
+								""
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "enable"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Expire product",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{user_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Medium",
+										"value": "{{web_medium}}",
+										"type": "text"
+									},
+									{
+										"key": "Portal",
+										"value": "{{actuarial_portal}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"end_date\": \"2021-05-25T10:33:32\"\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/actuarial/products/11/expire",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"actuarial",
+										"products",
+										"11",
+										"expire"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 24 Mar 2021 13:45:39 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.7.4"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "PATCH, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "469"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Product JIYAPO is expired 2021-05-25 10:33:32+00:00.\",\n    \"data\": {\n        \"id\": 11,\n        \"code\": \"ABCDEFGHIJKL\",\n        \"name\": \"JIYAPO\",\n        \"description\": \"Description\",\n        \"type\": \"9\",\n        \"channel\": \"2\",\n        \"start_date\": \"2021-03-01T06:00:00Z\",\n        \"end_date\": \"2021-05-25T10:33:32Z\",\n        \"created_by\": 2,\n        \"verified_by\": 4,\n        \"verified_date\": \"2021-03-24T08:57:56.014543Z\",\n        \"approved_by\": 2,\n        \"approved_date\": \"2021-03-24T08:57:59.118507Z\",\n        \"cloned_by\": null,\n        \"cloned_date\": null,\n        \"is_clone\": false,\n        \"parent\": null\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/products/products/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"products",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrive",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/products/products/1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"products",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gala\",\r\n    \"type\" : \"biscuit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/products/products/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"products",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Galaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/products/products/3/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"products",
+								"products",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/products/products/3/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"products",
+								"products",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stocks",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/stocks/stocks/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"stocks",
+								"stocks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrive",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/stocks/stocks/1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"stocks",
+								"stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product\": 1,\r\n    \"quantity\" : 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/stocks/stocks/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"stocks",
+								"stocks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 300\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/stocks/stocks/1/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"stocks",
+								"stocks",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/products/products/1/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"products",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product stock relation",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/stocks/product-stocks/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"stocks",
+								"product-stocks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrive",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Medium",
+								"value": "{{web_medium}}",
+								"type": "text"
+							},
+							{
+								"key": "Portal",
+								"value": "{{actuarial_portal}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/stocks/product-stocks/1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"stocks",
+								"product-stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
