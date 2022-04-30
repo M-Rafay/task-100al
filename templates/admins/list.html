@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="py-5">
+    <div id="errorText">
+        {% comment %} this is for showing generic error from BE {% endcomment %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                    <div class="alert alert-danger alert-dismissible fade show "
+                         role="alert"
+                         id="errorText">
+                        {{ message}}
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <ol class="breadcrumb  m-auto">
+        <li class="breadcrumb-item my-0"><a class='text-decoration-none' href="/dashboard/">Home</a></li>
+        <li class="breadcrumb-item active">Users</li>
+    </ol>
+
+    
+    <div class="d-flex justify-content-between align-items-center my-4">
+        <h3>Admin Users</h3>
+        <a href="admins/create?role=User_Role" class="btn btn-sm btn-outline-primary">
+            Add User
+        </a>
+    </div>
+    <div class="mb-4 d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <p class="my-0">Show</p>
+                <!-- options to select number of entries -->
+                <select class="form-select form-select-sm mx-1" name="itemsQuantity" id="itemsQuantity" role='button' onchange="storeItemQuantity()">
+                    <!-- options to select number of entries -->
+                    <option {% if page_obj.paginator.per_page == 2 %}selected{% endif %} value="2">
+                        2
+                    </option>
+                    <option {% if page_obj.paginator.per_page == 3 %}selected{% endif %} value="3">
+                        3
+                    </option>
+                    <option {% if page_obj.paginator.per_page == 5 %}selected{% endif %} value="5">
+                        5
+                    </option>
+                    <option {% if page_obj.paginator.per_page == 50 %}selected{% endif %}
+                            value="50">
+                        50
+                    </option>
+                    <option {% if page_obj.paginator.per_page == 100 %}selected{% endif %}
+                            value="100">
+                        100
+                    </option>
+                </select>
+                <p class="my-0">
+                    entries
+                </p>
+            </div>
+            <div class="">
+                <form class="d-flex align-items-center" method="GET">
+                    <input class="form-control form-control-sm mx-2" type="search" placeholder="Search..." aria-label="Search"
+                        name="q">
+                        <button class="btn btn-outline-primary btn-sm" type="submit" value="Search">Search</button>
+                </form>
+            </div>
+    </div>
+    <div class="overflow-auto">
+        <table class="table table-sm table-hover table-striped">
+            <thead>
+                <tr>
+                    <th class="col-1 text-center" scope="col">
+                        <a href="#" class="text-decoration-none">Sno.</a>
+                    </th>
+                    <th class="col-1 text-center" scope="col">
+                        <a class="text-decoration-none" {% if order_by == "id" %} href='?q={{ request.GET.q}}&order_by=-id&paginate_by={{ page_obj.paginator.per_page }}' {% else %}
+                        href='?q={{ request.GET.q}}&order_by=id&paginate_by={{ page_obj.paginator.per_page }}' {% endif %}>
+                        
+                        {% comment %} condition added to handle disablitiy of sorting arrows {% endcomment %}
+                        {% if order_by == "id"%}
+                        <i class="bi bi-sort-up"></i>
+                        {% elif order_by == "-id" %}
+                        <i class="bi bi-sort-down"></i> 
+                        {% elif order_by != "id" %}
+                        <i class="bi bi-sort-down text-muted"></i> 
+                        {% endif %}
+                             Ref id
+                        </a>
+                    </th>
+                    <th id="name" class="col-5" scope="col">
+                        <a class="text-decoration-none" {% if order_by == "name" %} href='?q={{ request.GET.q}}&order_by=-name&paginate_by={{ page_obj.paginator.per_page }}' {% else %}
+                            href='?q={{ request.GET.q}}&order_by=name&paginate_by={{ page_obj.paginator.per_page }}' {% endif %}>
+                            {% if order_by == "name"%}
+                        <i class="bi bi-sort-up"></i>
+                        {% elif order_by == "-name" %}
+                        <i class="bi bi-sort-down"></i> 
+                        {% elif order_by != "name" %}
+                        <i class="bi bi-sort-down text-muted"></i> 
+                        {% endif %}
+                            Name
+                        </a>
+                    </th>
+                    <th class="col-2" id="email" scope="col">
+                        <a class="text-decoration-none" href='#'>
+                        Email
+                    </a>
+                    </th>
+                    <th class="col-2" id="phone_no" scope="col">
+                    <a class="text-decoration-none" href='#'>
+                        Contact number
+                    </a>
+                    </th>
+                    <th class="col-1" scope="col"><a class="text-decoration-none" href='#'>Actions</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                <tr>
+                    <td align="center">{{forloop.counter}}</td>
+                    <td align="center"><a href="/dashboard/admins/{{admin.id}}">{{admin.id}}</a></td>
+                    <td>{{admin.name}}</td>
+                    <td>{{admin.email}}</td>
+                    <td>{{admin.phone_no}}</td>
+                    <td>
+                        <div class="d-flex">
+                            <form id="myform" method="post" action="/dashboard/admins/{{admin.id}}/delete">
+                                {% csrf_token %}
+                                <button onclick=" return confirm('Are you sure you want to delete?')" class="bg-transparent border-0 outline-0" type="submit">
+                                    <i class="bi bi-trash text-danger me-2"></i>
+                                </button>
+                            </form>
+                            <a href="admins/{{admin.id}}/update?role=User_Role">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+        <div class="d-flex justify-content-between align-items-center">
+            <p>
+                Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }}
+            </p>
+            <div class="col-6">
+                {% if is_paginated %}
+                    {% include "pagination.html" %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt-4 ">
+        {% if user_csv %}<label for="formFile">Users List</label><br/>
+            Users Download : <a class="text-info text-decoration-none" href="{{user_csv}}"> {{ user_csv }}</a>
+        {% else %}<label for="formFile">No file</label>
+        {% endif %}
+    </div>
+    <script>
+    function storeItemQuantity() {
+        const item_quantity = document.getElementById('itemsQuantity').value;
+        window.location.href = `?q={{ request.GET.q}}&paginate_by=${item_quantity}`;
+    }
+    </script>
+{% endblock body %}

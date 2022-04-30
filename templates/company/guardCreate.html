@@ -1,0 +1,301 @@
+<div class="py-5">
+    <div id="errorText">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                    <div class="alert alert-danger alert-dismissible fade show "
+                         role="alert"
+                         id="errorText">
+                        {{ message }}
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <ol class="breadcrumb  m-auto">
+        <li class="breadcrumb-item my-0">
+            <a class='text-decoration-none' href="/dashboard/guards">Guard</a>
+        </li>
+        <li class="breadcrumb-item active">
+            {% if create_form_guard %}
+                Add Users
+            {% else %}
+                Edit user
+            {% endif %}
+        </li>
+    </ol>
+    <div>
+        <form method="post"
+              id="{% if create_form_guard %}addGuardForm{% else %}editGuardForm{% endif %}">
+            {% csrf_token %}
+            <div class="d-flex justify-content-between align-items-center my-5">
+                <h3>
+                    {% if create_form_guard %}
+                        Add Users
+                    {% else %}
+                        Edit user
+                    {% endif %}
+                </h3>
+                <button class="btn btn-sm btn-outline-primary" type="submit">
+                    {% if create_form_guard %}
+                        Save
+                    {% else %}
+                        Update
+                    {% endif %}
+                </button>
+            </div>
+            <div class="row d-flex flex-xl-row flex-md-row flex-sm-column justify-content-center justify-content-md-between">
+                <div class="row col-lg-6 col-md-6 col-sm-12 gx-2 gx-md-3">
+                    <div class="form-group">
+                        <label for={{ form.name.id_for_label }}>{{ form.name.label }}
+                        </label>
+                        <input type="text"
+                               id="{{ form.name.id_for_label }}"
+                               name="{{ form.name.name }}"
+                               class="form-control"
+                               placeholder="Enter Name"
+                               {% if not create_form_guard %}value="{{ form.name.value }}"{% endif %}>
+                        {% if form.name.errors %}
+                            {% for error in form.name.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4 ">
+                        <label {{ form.password.id_for_label }}>Pin
+                        </label>
+                        <input type="password"
+                               id="{{ form.password.id_for_label }}"
+                               name="{{ form.password.name }}"
+                               class="form-control"
+                               placeholder="Enter 6 digits Pin/Password">
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.phone_no.id_for_label }}>Contact
+                        </label>
+                        <input type="text"
+                               id="{{ form.phone_no.id_for_label }}"
+                               name="{{ form.phone_no.name }}"
+                               class="form-control"
+                               placeholder="Enter Contact"
+                               {% if not create_form_guard %}value="{{ form.phone_no.value }}"{% endif %}>
+                        {% if form.phone_no.errors %}
+                            {% for error in form.phone_no.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.nationality.id_for_label }}>Nationality
+                        </label>
+                        <input type="text"
+                               id="{{ form.nationality.id_for_label }}"
+                               name="{{ form.nationality.name }}"
+                               class="form-control"
+                               placeholder="Enter nationality"
+                               {% if not create_form_guard %}value="{{ form.nationality.value }}"{% endif %}>
+                        {% if form.nationality.errors %}
+                            {% for error in form.nationality.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.address.id_for_label }}>Address
+                        </label>
+                        <input type="text"
+                               id="{{ form.address.id_for_label }}"
+                               name="{{ form.address.name }}"
+                               class="form-control"
+                               placeholder="Enter address"
+                               {% if not create_form_guard %}value="{{ form.address.value }}"{% endif %}>
+                        {% if form.address.errors %}
+                            {% for error in form.address.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.license_no.id_for_label }}>License no
+                        </label>
+                        <input type="text"
+                               id="{{ form.license_no.id_for_label }}"
+                               name="{{ form.license_no.name }}"
+                               class="form-control"
+                               placeholder="Enter license no"
+                               {% if not create_form_guard %}value="{{ form.license_no.value }}"{% endif %}>
+                        {% if form.license_no.errors %}
+                            {% for error in form.license_no.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.per_hour_rate.id_for_label }}>Per hour rate
+                        </label>
+                        <input type="text"
+                               id="{{ form.per_hour_rate.id_for_label }}"
+                               name="{{ form.per_hour_rate.name }}"
+                               class="form-control"
+                               placeholder="Enter per hour rate"
+                               {% if not create_form_guard %}value="{{ form.per_hour_rate.value }}"{% endif %}>
+                        {% if form.per_hour_rate.errors %}
+                            {% for error in form.per_hour_rate.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4  ">
+                        {% comment %} <label for="role">Subcontractors</label>
+                        <select class="form-select shadow-none" id="{{form.area_manager.id_for_label}}">
+                            {% for subcontractor in subcontractors %}
+                            <option value="{{subcontractor.id}}">
+                                {{ subcontractor.name }}
+                            </option>
+                            {% endfor %}
+                        </select> {% endcomment %}
+                        <select class="custom-select custom-select-sm{% if form.area_manager.errors %} is-invalid{% endif %}" id="{{ form.area_manager.id_for_label }}" name="{{ form.area_manager.html_name }}">
+                            {% for id, name in form.fields.area_manager.choices %}
+                                <option value="{{ id }}"{% if form.area_manager.value == id %} selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                        <select class="custom-select custom-select-sm{% if form.sub_contractor.errors %} is-invalid{% endif %}" id="{{ form.sub_contractor.id_for_label }}" name="{{ form.sub_contractor.html_name }}">
+                            {% for id, name in form.fields.sub_contractor.choices %}
+                                <option value="{{ id }}"{% if form.sub_contractor.value == id %} selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.license_issue_date.id_for_label }}>license issue date</label>
+                        <input type="date"
+                        id="{{ form.license_issue_date.id_for_label }}"
+                        name="{{ form.license_issue_date.name }}"
+                        class="form-control"
+                        {% if not create_form_guard %}value="{{ form.license_issue_date.value|date:'Y-m-d' }}">{% endif %}
+                        <input type="text">
+                        {% if form.license_issue_date.errors %}
+                            {% for error in form.license_issue_date.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row col-lg-6 col-md-6 col-sm-12 gx-2  gx-md-3">
+                    <div class="form-group mt-4 mt-md-0 ">
+                        <label {{ form.email.id_for_label }}>Email
+                        </label>
+                        <input type="text"
+                               id="{{ form.email.id_for_label }}"
+                               name="{{ form.email.name }}"
+                               class="form-control"
+                               placeholder="Enter Email"
+                               {% if not create_form_guard %}value="{{ form.email.value }}"{% endif %}>
+                        {% if form.email.errors %}
+                            {% for error in form.email.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4  ">
+                        <label for="role">Role</label>
+                        <select class="form-select shadow-none" id="role">
+                            <option>
+                                Admin
+                            </option>
+                            <option>
+                                Security guard
+                            </option>
+                            <option>
+                                Area manager
+                            </option>
+                            <option>
+                                Subcontractor
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.city.id_for_label }}>city
+                        </label>
+                        <input type="text"
+                               id="{{ form.city.id_for_label }}"
+                               name="{{ form.city.name }}"
+                               class="form-control"
+                               placeholder="Enter city"
+                               {% if not create_form_guard %}value="{{ form.city.value }}"{% endif %}>
+                        {% if form.city.errors %}
+                            {% for error in form.city.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.birth_date.id_for_label }}>Birth date
+                        </label>
+                        <input type="date"
+                               id="{{ form.birth_date.id_for_label }}"
+                               name="{{ form.birth_date.name }}"
+                               class="form-control"
+                               {% if not create_form_guard %}value="{{ form.birth_date.value|date:'Y-m-d' }}">{% endif %}
+                        {% if form.birth_date.errors %}
+                            {% for error in form.birth_date.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.license_expiry_date.id_for_label }}>License expiry date
+                        </label>
+                        <input type="date"
+                               id="{{ form.license_expiry_date.id_for_label }}"
+                               name="{{ form.license_expiry_date.name }}"
+                               class="form-control"
+                               {% if not create_form_guard %}value="{{ form.license_expiry_date.value|date:'Y-m-d' }}">{% endif %}
+                        {% if form.license_expiry_date.errors %}
+                            {% for error in form.license_expiry_date.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.reference_code.id_for_label }}>Reference code
+                        </label>
+                        <input type="text"
+                               id="{{ form.reference_code.id_for_label }}"
+                               name="{{ form.reference_code.name }}"
+                               class="form-control"
+                               placeholder="Enter refrence code"
+                               {% if not create_form_guard %}value="{{ form.reference_code.value }}">{% endif %}
+                        {% if form.reference_code.errors %}
+                            {% for error in form.reference_code.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4  ">
+                        <label for="role">Area managers</label>
+                        {% comment %} <select class="form-select shadow-none" id="{{form.area_manager.id_for_label}}">
+                            {% for area_manager in area_managers %}
+                            <option value="{{area_manager.id}}">
+                                {{ area_manager.name }}
+                            </option>
+                            {% endfor %}
+                        </select> {% endcomment %}
+                    </div>
+                    <div class="form-group mt-4 ">
+                        <label for="formFile">Display picture</label>
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

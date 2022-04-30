@@ -9,3 +9,4 @@ lazy-object-proxy==1.7.1
 pytz==2022.1
 sqlparse==0.4.2
 tzdata==2022.1
+requests==2.27.1

@@ -13,8 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print(BASE_DIR)
 from corsheaders.defaults import default_headers
 
 # Quick-start development settings - unsuitable for production
@@ -63,6 +64,7 @@ LOCAL_APPS = [
     'product',
     'stock',
     'user',
+    'dashboard',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -78,6 +80,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -101,7 +104,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,7 +126,7 @@ WSGI_APPLICATION = 'task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
 
@@ -159,6 +162,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+TIME_ZONE = 'Asia/Karachi'
 
 
 # Static files (CSS, JavaScript, Images)
@@ -167,9 +171,17 @@ USE_TZ = True
 # STATIC_URL = 'static/'
 try:
     # local environment
-    SITE_URL = 'http://127.0.0.1:8000'        
+    # SITE_URL = 'http://127.0.0.1:8000'        
+    # STATIC_URL = '/static/'
+    # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+    
+    SITE_URL = 'http://127.0.0.1:8000'
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+
 
     MEDIA_ROOT = os.path.join(BASE_DIR, 'data/')     # 'media/'
     MEDIA_URL = '/data/'    # '/media/'

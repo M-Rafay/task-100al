@@ -1,0 +1,3 @@
+id,password,last_login,is_superuser,first_name,last_name,is_staff,date_joined,full_name,name,email,phone_no,is_active,role
+6,pbkdf2_sha256$320000$2JDcMMMukIkrbs2LSwSjA8$+Kl3Xw7wiLK9A4D9plulIiRDhsh1UzbPKmIC3FK8ymc=,,False,,,False,2022-04-30 07:32:43.705051+00:00,,wasay,wasay@mailinator.com,111111111111,True,User Role
+7,pbkdf2_sha256$320000$JZjDJUFAy7OfxTIZVgZfh9$xGEPIvhgUe6T7si6dlMX2OBx62fAkN65lSeb6JPzp5o=,,False,,,False,2022-04-30 08:41:55.877861+00:00,,rafay,rafay@mailinator.com,111111111111,True,User Role

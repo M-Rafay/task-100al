@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block body %}
+    {% include "../company/adminCreate.html" with create_form=1 %}
+{% endblock body %}
+{% load static %}
+{% block script %}
+    <script src="{% static 'dashboard/js/adminList.js' %}"></script>
+{% endblock script %}

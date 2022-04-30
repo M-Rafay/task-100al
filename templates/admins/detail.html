@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+
+<div class="py-5">
+  <ol class="breadcrumb m-auto">
+    <li class="breadcrumb-item my-0">
+      <a class="text-decoration-none" href="/dashboard/admins">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">User Details</li>
+  </ol>
+
+  <div class="d-flex justify-content-between align-items-center my-4">
+    <h3>Admin User</h3>
+    <a
+      href="{{admin.id}}/update?role=User_Role"
+      class="btn btn-sm btn-outline-primary"
+    >
+      Edit
+    </a>
+  </div>
+  <div class="d-flex col-12 justify-content-between flex-column flex-lg-row">
+    <div
+      class="col-lg-7 col-12 shadow p-4 d-flex flex-column align-items-center justify-content-center"
+    >
+      <table class="table table-striped user-details-table">
+        <thead>
+          <tr>
+            <th class="col-6" scope="col">Attribute</th>
+            <th class="col-6" scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>{{admin.name}}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{admin.email}}</td>
+          </tr>
+          <tr>
+            <td>Contact</td>
+            <td>{{admin.phone_no}}</td>
+          </tr>
+          <tr>
+            <td>Role</td>
+            <td>{{admin.role}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="row col-lg-4 col-12 mt-lg-0 mt-4 gx-0 d-flex align-items-center justify-content-center flex-column shadow py-4"
+    >
+      <div class="col col-lg-7 col-4">
+        {% if admin.profile_image %}
+        <img
+          class="mb-3 w-100"
+          src="{{profile_image_presigned_url}}"
+          alt="user profile image"
+          style="clip-path: circle()"
+        />
+        {% else %}
+        <img
+          class="mb-3 w-100"
+          src="../../static/dashboard/images/user.jpg"
+          alt="user profile image"
+          style="clip-path: circle()"
+        />
+        {% endif %}
+      </div>
+      <h4 class="text-center my-0">{{admin.name}}</h4>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'dashboard/styles/adminList.css' %}"
+/>
+{% endblock css %}

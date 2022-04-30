@@ -1,0 +1,150 @@
+<div class="py-5">
+    <div id="errorText">
+        {% comment %} this is for showing generic error from BE {% endcomment %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                    <div class="alert alert-danger alert-dismissible fade show "
+                         role="alert"
+                         id="errorText">
+                        {{ message}}
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <ol class="breadcrumb  m-auto">
+        <li class="breadcrumb-item my-0">
+            <a class='text-decoration-none' href="/dashboard/admins">Admin</a>
+        </li>
+        {% comment %} this page is dependent from "file parameter" if param = create_form then it will changes to create form ,otherwise edit form {% endcomment %}
+        <li class="breadcrumb-item active">
+            {% if create_form %}
+                Add Users
+            {% else %}
+                Edit user
+            {% endif %}
+        </li>
+    </ol>
+    <div>
+        <form method="post"
+              id="{% if create_form %}addUserForm{% else %}editUserForm{% endif %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="d-flex justify-content-between align-items-center my-5">
+                <h3>
+                    {% if create_form %}
+                        Add Users
+                    {% else %}
+                        Edit user
+                    {% endif %}
+                </h3>
+                <button class="btn btn-sm btn-outline-primary" type="submit">
+                    {% if create_form %}
+                        Save
+                    {% else %}
+                        Update
+                    {% endif %}
+                </button>
+            </div>
+            <div class="row d-flex flex-xl-row flex-md-row flex-sm-column justify-content-center justify-content-md-between">
+                <div class="row col-lg-6 col-md-6 col-sm-12 gx-2 gx-md-3 d-block">
+                    <div class="form-group">
+                        {% comment %} form id, input name , value coming from backend {% endcomment %}
+                        <label for={{ form.name.id_for_label }}>
+                            {{ form.name.label }}
+                        </label>
+                        <input type="text"
+                               id="{{ form.name.id_for_label }}"
+                               name="{{ form.name.name }}"
+                               class="form-control"
+                               placeholder="Enter Name"
+                               {% if not create_form %} value="{{ form.name.value }}"{% endif %}>
+                               {% comment %} this is for showing field spacific error from backend or frontend {% endcomment %}
+                        {% if form.name.errors %}
+                            {% for error in form.name.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4 ">
+                        <label {{ form.password.id_for_label }}>
+                            Pin
+                        </label>
+                        <input type="password"
+                               id="{{ form.password.id_for_label }}"
+                               name="{{ form.password.name }}"
+                               class="form-control"
+                               placeholder="Enter 6 digits Pin/Password">
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        <label {{ form.phone_no.id_for_label }}>
+                            Contact
+                        </label>
+                        <input type="text"
+                               id="{{ form.phone_no.id_for_label }}"
+                               name="{{ form.phone_no.name }}"
+                               class="form-control"
+                               placeholder="Enter Contact"
+                               {% if not create_form %}value="{{ form.phone_no.value }}{% endif %}">
+                        {% if form.phone_no.errors %}
+                            {% for error in form.phone_no.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row col-lg-6 col-md-6 col-sm-12 gx-2  gx-md-3">
+                    <div class="form-group mt-4 mt-md-0 ">
+                        <label {{ form.email.id_for_label }}>Email
+                        </label>
+                        <input type="text"
+                               id="{{ form.email.id_for_label }}"
+                               name="{{ form.email.name }}"
+                               class="form-control"
+                               placeholder="Enter Email"
+                               {% if not create_form %}value="{{ form.email.value }}"{% endif %}>
+                        {% if form.email.errors %}
+                            {% for error in form.email.errors %}
+                                <small id="emailHelp" class="form-text text-danger">{{ error|escape }}</small>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4  ">
+                        <label {{ form.role.id_for_label }}>Role
+                        </label>
+                        <input type="text"
+                            class="form-control" placeholder="Enter Role", value="{{role}}" readonly>
+                        <input type="text" id="{{ form.role.id_for_label }}" name="{{ form.role.name }}"
+                            class="form-control" placeholder="Enter Role", value="{{group}}" hidden>
+                        {% if form.role.errors %}
+                        {% for error in form.role.errors %}
+                        <small id="roleHelp" class="form-text text-danger">{{ error|escape }}</small>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4 ">
+                        <label for="formFile">Display picture</label>
+                        <input class="form-control " type="file" id="{{ form.profile_image.id_for_label }}" value="{{form.profile_image.url}}" name="{{ form.profile_image.name }}">
+                    </div>
+                    {% if not create_form %}
+                    <div class="form-group mt-4 ">
+                        {% if admin.profile_image %}<label for="formFile">Profile picture is already applied. click choose file to update</label><br/>
+                            View profile picture : <a class="text-info text-decoration-none" href="{{profile_image_presigned_url}}"> {{ form.profile_image.name }}</a>
+                        {% else %}<label for="formFile">Profile picture is not uploaded yet, click choose file to update</label>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

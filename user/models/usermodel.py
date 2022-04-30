@@ -12,7 +12,7 @@ class User(AbstractUser):
     email = models.EmailField(('email address'), unique=True)
     phone_no = models.CharField(blank=True, null=True, max_length=15)
     is_active = models.BooleanField(default=True)
-    role = models.CharField(max_length=15, default="user")
+    role = models.CharField(max_length=50, default="user")
     
 
     username = None
@@ -27,3 +27,9 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+        # Here's where to take a look
+    def soft_delete(self):
+        self.is_active = False
+        self.save()
+

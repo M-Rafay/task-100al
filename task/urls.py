@@ -20,6 +20,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from stock.views.stockviews import stockViewSet
+from . import settings
 
 
 urlpatterns = [
@@ -28,6 +29,8 @@ urlpatterns = [
     path('api/v1/products/', include('product.urls')),
     # path('api/v1/products/', stockViewSet.as_view({'get': 'list', 'post': 'create', 'put': 'update', 'patch': 'partial_update', 'delete': 'destroy'})),
     path('api/v1/stocks/', include('stock.urls')),
+    path("dashboard/", include('dashboard.urls')),
+    
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

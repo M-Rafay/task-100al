@@ -1,0 +1,61 @@
+<ul class="pagination justify-content-end">
+    {% if 4 < page_obj.number %}
+    {% comment %} condition to show first page button  {% endcomment %}
+        <li class="page-item">
+            <a class="page-link"
+               href="?page={{ page_obj.first_index }}&paginate_by={{ page_obj.paginator.per_page }}">First</a>
+        </li>
+    {% endif %}
+    
+    {% if page_obj.has_previous %}
+    {% comment %} condition to show previous page button {% endcomment %}
+        <li class="page-item previous">
+            <a class="page-link"
+               href="?page={{ page_obj.previous_page_number }}&paginate_by={{ page_obj.paginator.per_page }}">Previous</a>
+        </li>
+    {% else %}
+    {% comment %} condition to disable previous page button {% endcomment %}
+        <li class="page-item disabled previous">
+            <a class="page-link" href="#">Previous</a>
+        </li>
+    {% endif %}
+    
+    {% for i in page_obj.paginator.page_range %}
+    {% comment %} loop for extracting pages {% endcomment %}
+        
+    {% if page_obj.number == i %}
+    {% comment %} this is to show first 4 pages {% endcomment %}
+            <li class="page-item active pagination-page-num">
+                <a class="page-link"
+                   href="?page={{ i }}&paginate_by={{ page_obj.paginator.per_page }}">{{ page_obj.number }}</a>
+            </li>
+        {% elif i > page_obj.number|add:'-4' and i < page_obj.number|add:'4' %}
+    {% comment %} this is to show previus 4 and next 4 from current page {% endcomment %}
+            <li class="page-item pagination-page-num">
+                <a class="page-link"
+                   href="?page={{ i }}&paginate_by={{ page_obj.paginator.per_page }}">{{ i }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    {% comment %} to show next button {% endcomment %}
+        <li class="page-item">
+            <a class="page-link"
+               href="?page={{ page_obj.next_page_number }}&paginate_by={{ page_obj.paginator.per_page }}">Next</a>
+        </li>
+    {% else %}
+    {% comment %} to disable next button {% endcomment %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    {% endif %}
+
+    {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+    {% comment %} to show last page button {% endcomment %}
+        <li class="page-item">
+            <a class="page-link"
+               href="?page={{ page_obj.paginator.num_pages }}&paginate_by={{ page_obj.paginator.per_page }}">Last</a>
+        </li>
+    {% endif %}
+</ul>

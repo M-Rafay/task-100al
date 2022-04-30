@@ -1,0 +1,49 @@
+{% load static %}
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasLabel">User Flow</h5>
+  </div>
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          <i class="fas fa-home"></i>
+          <span class="ms-3">Dashboard</span>
+        </button>
+      </h2>
+      <div
+        id="collapseOne"
+        class="accordion-collapse collapse show"
+        aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <a class="text-decoration-none" href="/dashboard/admins">
+            <p>- &nbsp&nbsp Admin</p>
+          </a>
+          <a class="text-decoration-none" href="/dashboard/guards">
+            <p>- &nbsp&nbsp Security guards</p>
+          </a>
+          <a class="text-decoration-none" href="#">
+            <p>- &nbsp&nbsp Area Managers</p>
+          </a>
+          <a class="text-decoration-none" href="#">
+            <p>- &nbsp&nbsp Subcontractors</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
