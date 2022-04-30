@@ -39,6 +39,11 @@ def login_request(request):
             form = AuthenticationForm(request, data=request.POST)
             if form.is_valid():
                 username = form.cleaned_data.get('username')
+                if username.contains("abc"):
+                    logger.error(f"User with name abc in it is not accepted")
+                    messages.error(request, "User with name abc in it is not accepted")
+                    
+                    
                 password = form.cleaned_data.get('password')
                 # authenticate the user
                 user = authenticate(username=username, password=password)
@@ -163,23 +168,16 @@ class AdminListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
             return None
 
 
-class AdminCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
+class AdminCreateView(CreateView):
     '''Create view for admins'''
 
-    permission_required = 'user.add_user'
     model = User
     form_class = UserCreateForm
     template_name = 'admins/create.html'
     success_url = reverse_lazy('dashboard:admins')
     # failure_url = reverse_lazy('dashboard:admins')
-    login_url = '/dashboard/login'
     success_message = 'Admin successfully created!'
     error_message = "Error creating the Admin"
-
-    # redirects to the admin list view if unauthorized permission
-    def handle_no_permission(self):
-        messages.error(self.request, "You do not have permission to perform this action.")
-        return redirect('dashboard:admins')
 
     def get_context_data(self, **kwargs):
         
@@ -197,7 +195,7 @@ class AdminCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
             if self.request.method == 'POST':
                 data = self.request.POST.copy()
                 # extracting group from role
-                data['created_by'] = self.request.user.id
+                data['created_by'] = 1
                 group = data['role']
                 data['role'] = group.replace('_', ' ').title()
 
@@ -210,7 +208,7 @@ class AdminCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
                         # add the user to the User_Role group
                         my_group = Group.objects.get(name=group)
                         my_group.user_set.add(self.object)
-                        
+                        login(request, self.object)
                         return HttpResponseRedirect(self.get_success_url())
                     messages.error(self.request, self.error_message)
                     return super(AdminCreateView, self).post(request, *args, **kwargs)
@@ -266,6 +264,9 @@ class AdminUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         
         context = super(AdminUpdateView, self).get_context_data(**kwargs)
+        # if str(self.request.id) != str(self.kwargs['pk']):
+        #     messages.error(self.request, "user cannot update other users")
+        #     raise Exception("user cannot update other users")
         # passing role and groups to the form
         context['title'] = 'Create ' + self.request.GET.get('role').replace('_', ' ')
         context['role'] = self.request.GET.get('role').replace('_', ' ')
@@ -280,6 +281,7 @@ class AdminUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
             if request.POST.get('cancel'):
                 return HttpResponseRedirect(self.get_success_url())
             else:
+                
                 is_password_updated = False
                 user_obj = User.objects.get(id=pk)
 
@@ -313,6 +315,14 @@ class AdminUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
             return super(AdminUpdateView, self).get(request, *args, **kwargs)
 
 
+    def get(self, request, pk, *args, **kwargs):
+        super(AdminUpdateView, self).get(request, *args, **kwargs)
+        if str(self.request.user.id) != str(self.kwargs['pk']):
+            messages.error(self.request, "user cannot update other users")
+            # raise Exception("user cannot update other users")
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self.get_context_data(**kwargs))   
 class AdminDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     '''Delete view for admins'''
 

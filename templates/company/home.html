@@ -1,2 +1,23 @@
 <!-- templates/home.html-->
 {% extends '../base.html' %}
+
+{% block body %}<h1>Home</h1>
+{% comment %} <a href="admins/create?role=User_Role" class="btn btn-sm btn-outline-primary">
+    Signup
+</a> {% endcomment %}
+<div>
+    {% if user.is_authenticated %}
+        <a class="btn btn-sm btn-outline-primary" href="/dashboard/admins">
+            Users
+        </a>
+        <a href="logout" class="btn btn-sm btn-outline-primary">Logout</a>
+        
+    {% else %}
+        <a href="login" class="btn btn-sm btn-outline-primary">Login</a>
+        <a href="admins/create?role=User_Role" class="btn btn-sm btn-outline-primary">
+            Signup
+        </a>
+    {% endif %}
+</div>
+
+{% endblock %}
